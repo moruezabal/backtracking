@@ -13,11 +13,7 @@ public class Main {
 		
 		Backtraking b = new Backtraking(e);
 		
-		ArrayList<Subconjunto> solucion = b.back();
-		
-		
-		
-		System.out.println("Solucion\n" + solucion);
+		System.out.println("Solucion: " + b.back());
 	}
 
 }

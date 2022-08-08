@@ -8,12 +8,12 @@ public class Backtraking {
 		this.e=e;
 	}
 
-	public ArrayList<Subconjunto> back() {
+	public boolean back() {
 		//el estado es solucion?
 		if(e.esEstadoFinal()) {
 			if(e.esSolucion()) {
 				e.imprimirConjuntos();
-				return e.getSubconjuntos();
+				return true;
 			}
 		}
 		else {
@@ -22,12 +22,13 @@ public class Backtraking {
 				//Hacer cambios
 				actual.getElementos().add(candidato);
 				//Llamar backtracking
-				this.back();
+				if(this.back())
+					return true;
 				//Deshacer
 				actual.getElementos().remove(actual.getElementos().size() - 1);
 			}
 			e.getCandidatos().add(candidato);
 		}
-		return e.getSubconjuntos();
+		return false;
 	}
 }
