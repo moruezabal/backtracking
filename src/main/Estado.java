@@ -13,6 +13,7 @@ public class Estado {
 		this.subconjuntos = this.agregarSubconjuntos();
 		
 	}
+	
 	private ArrayList<Subconjunto> agregarSubconjuntos() {
 		ArrayList<Subconjunto> inicial = new ArrayList<>();
 		inicial.add(new Subconjunto());
@@ -21,7 +22,6 @@ public class Estado {
 		return inicial;
 	}
 	
-	
 	public ArrayList<Subconjunto> getSubconjuntos() {
 		return subconjuntos;
 	}
@@ -29,9 +29,11 @@ public class Estado {
 	public void setSubconjuntos(ArrayList<Subconjunto> subconjuntos) {
 		this.subconjuntos = subconjuntos;
 	}
+	
 	public int getObjetivo() {
 		return this.objetivo;
 	}
+	
 	public ArrayList<Integer> getCandidatos() {
 		return candidatos;
 	}
@@ -47,19 +49,28 @@ public class Estado {
 	public boolean esSolucion() {
 		return this.subconjuntosLlenos() && this.cumpleConjuntosSuma();
 	}
+	
 	private boolean cumpleConjuntosSuma() {
-		return this.coincideSuma(this.s1) && this.coincideSuma(this.s2) && this.coincideSuma(this.s1);
+		for (Subconjunto s : this.getSubconjuntos()) {
+			if(!this.coincideSuma(s))
+				return false;
+		}
+		return true;	
 	}
-	private boolean coincideSuma(ArrayList<Integer> s) {
+	
+	private boolean coincideSuma(Subconjunto s) {
 		int suma=0;
-		for(int elem : s) {
+		for(int elem : s.getElementos()) {
 			suma+= elem;
 		}
 		return suma==this.objetivo;
 	}
+	
 	private boolean subconjuntosLlenos() {
-		return !this.s1.isEmpty() && !this.s2.isEmpty() && !this.s3.isEmpty();
-	}
-	
-	
+		for (Subconjunto s : this.getSubconjuntos()) {
+			if(s.getElementos().isEmpty())
+				return false;
+		}
+		return true;
+	}	
 }
