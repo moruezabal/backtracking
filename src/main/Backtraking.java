@@ -12,6 +12,7 @@ public class Backtraking {
 		//el estado es solucion?
 		if(e.esEstadoFinal()) {
 			if(e.esSolucion()) {
+				e.imprimirConjuntos();
 				return e.getSubconjuntos();
 			}
 		}
@@ -21,12 +22,12 @@ public class Backtraking {
 				//Hacer cambios
 				actual.getElementos().add(candidato);
 				//Llamar backtracking
+				this.back();
 				//Deshacer
-			return null;
+				actual.getElementos().remove(actual.getElementos().size() - 1);
+			}
+			e.getCandidatos().add(candidato);
 		}
-		
-		return null;
-	}
-		return null;
+		return e.getSubconjuntos();
 	}
 }

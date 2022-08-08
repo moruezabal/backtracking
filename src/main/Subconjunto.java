@@ -18,4 +18,9 @@ public class Subconjunto {
 		this.elementos = elementos;
 	}
 
+	@Override
+	public String toString() {
+		return "[" + elementos + "]";
+	}
+
 }

@@ -72,5 +72,12 @@ public class Estado {
 				return false;
 		}
 		return true;
-	}	
+	}
+	
+	public void imprimirConjuntos() {
+		for (Subconjunto s : this.getSubconjuntos()) {
+			System.out.println(s);			
+		}
+		System.out.println("------------------------");
+	}
 }
